@@ -95,11 +95,18 @@
             <artifactId>imagej-legacy</artifactId>
             <scope>runtime</scope>
         </dependency>
+
+        <dependency>
+            <groupId>net.imglib2</groupId>
+            <artifactId>imglib2-ij</artifactId>
+        </dependency>
         
 		<dependency>
 			<groupId>invizio</groupId>	
 			<artifactId>ImgAlgo</artifactId>
 			<version>0.1.0</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/../ImgAlgo/target/ImgAlgo-0.1.0.jar</systemPath>
 		</dependency>
 		    
 	</dependencies>
