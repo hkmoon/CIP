@@ -106,8 +106,10 @@ import net.imglib2.view.Views;
 				
 				//TODO: Warning! to many elements in pixelSize, only the nDim first will be used 
 			}
-			
-			RandomAccessibleInterval<BitType> mask;
+
+			// TODO: Not compile with <BitType> casting, please consider it again
+			// RandomAccessibleInterval<BitType> mask;
+			RandomAccessibleInterval mask;
 			
 			if( imageType.equals("numeric") )
 			{
@@ -123,7 +125,9 @@ import net.imglib2.view.Views;
 			}
 			else
 			{
-				mask = (RandomAccessibleInterval<BitType>) inputImage;
+				// TODO: Not compile with <BitType> casting, temporarily remove <BitType> casting
+				// mask = (RandomAccessibleInterval<BitType>) inputImage;
+				mask =  inputImage;
 			}
 			
 			// build a distance map
