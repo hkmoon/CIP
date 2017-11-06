@@ -12,7 +12,7 @@
         <relativePath/>
     </parent>
 
-	<groupId>invizio</groupId>
+	<groupId>nvisio</groupId>
 	<artifactId>CIP</artifactId>
 	<version>0.1.0</version>
 
@@ -21,8 +21,8 @@
 	<url>none</url>
 	<inceptionYear>2016</inceptionYear>
 	<organization>
-		<name>invizio</name>
-		<url>none</url>
+		<name>nvisio</name>
+		<url>nvis.io</url>
 	</organization>
 	<licenses>
 		<license>
@@ -68,8 +68,8 @@
 	</ciManagement>
 
 	<properties>
-		<package-name>invizio.cip</package-name>
-		<main-class>invizio.cip.CIP</main-class>
+		<package-name>nvisio.cip</package-name>
+		<main-class>nvisio.cip.CIP</main-class>
 		<license.licenseName>BSD3</license.licenseName>
 		<license.copyrightOwners>Benoit Lombardot</license.copyrightOwners>
 	</properties>
@@ -102,7 +102,7 @@
         </dependency>
         
 		<dependency>
-			<groupId>invizio</groupId>	
+			<groupId>invizio</groupId>
 			<artifactId>ImgAlgo</artifactId>
 			<version>0.1.0</version>
             <scope>system</scope>
