@@ -125,17 +125,28 @@ public class CIP extends AbstractNamespace{
 		String NAME = "watershed";
 		String ALIASES = "ws";
 	}
-	
-	
-	
-	/********************************************************************************
+
+
+
+	/*
+	 ********************************************************************************
 	 * 	Watershed interface															*
 	 ********************************************************************************/
-	
-	// General Watershed Op methods, should have lowest priority
-	// should handle all HWatershed and SeededWatershed without conflict
-	// Binary Watershed is handled earlier with specific signatures
-	
+
+	/**
+	 * General Watershed Op methods, should have lowest priority
+	 * should handle all HWatershed (with one input image) and SeededWatershed (with two input images)
+	 * without conflict Binary Watershed is handled earlier with specific signatures
+	 *
+	 * @author Benoit Lombardot
+	 *
+	 * @cip-param inputImage (required - image) an input image
+	 * @cip-param seed (required if use Seeded Watershed - image) a seeded image
+	 * @cip-param T (optional - number) Threshold
+	 * @cip-param H (optional - number) hMin
+	 * @cip-param Method (optional - string) 'Binary', 'Gray'
+	 * @return a segmented image
+	 */
 	@OpMethod(op = CIP.WATERSHED.class )
 	public Object watershed(final Object... args) {
 		
@@ -193,6 +204,15 @@ public class CIP extends AbstractNamespace{
 	}
 
 	// distance method
+
+	/**
+	 * Distance method
+	 *
+	 * @author Benoit Lombardot
+	 *
+	 * @param args
+	 * @return
+	 */
 	@OpMethod(op = CIP.DISTANCE.class)
 	public Object distance(final Object... args) {
 		
@@ -233,6 +253,14 @@ public class CIP extends AbstractNamespace{
 	}
 	
 	// distance method
+	/**
+	 * Maxima method
+	 *
+	 * @author Benoit Lombardot
+	 *
+	 * @param args
+	 * @return
+	 */
 	@OpMethod(op = CIP.MAXIMA.class)
 	public Object maxima( final Object... args ) {
 		
@@ -282,7 +310,15 @@ public class CIP extends AbstractNamespace{
     /********************************************************************************
 	 * 	image labeling 													*
 	 ********************************************************************************/
- 	
+
+	/**
+	 * label method
+	 *
+	 * @author Benoit Lombardot
+	 *
+	 * @param args
+	 * @return
+	 */
     @OpMethod(op = LabelCIP.class)
  	public Object label( final Object... args ) {
  		
@@ -312,8 +348,15 @@ public class CIP extends AbstractNamespace{
     
     
     // TODO: it would be nice to make the output parsing generic and put it in an independent class 
-    
-    
+
+	/**
+	 * Threshold method
+	 *
+	 * @author Benoit Lombardot
+	 *
+	 * @param args
+	 * @return
+	 */
     @OpMethod(ops = { 	ThresholdManualCIP.class 	,
     					ThresholdAutoCIP.class 	})
  	public Object threshold( final Object... args ) {
@@ -371,7 +414,15 @@ public class CIP extends AbstractNamespace{
     /********************************************************************************
    	 * 	gauss filtering																*
    	 ********************************************************************************/
-    	
+
+	/**
+	 * Gauss method
+	 *
+	 * @author Benoit Lombardot
+	 *
+	 * @param args
+	 * @return
+	 */
        @OpMethod(op = GaussCIP.class)
     	public Object gauss( final Object... args ) {
     		
@@ -390,8 +441,15 @@ public class CIP extends AbstractNamespace{
    		return results; 
    	}
 
-    
-    
+
+	/**
+	 * Median method
+	 *
+	 * @author Benoit Lombardot
+	 *
+	 * @param args
+	 * @return
+	 */
    @OpMethod(op = MedianCIP.class)
    public Object median( final Object... args ) {
   		
@@ -411,9 +469,16 @@ public class CIP extends AbstractNamespace{
  		}
  		return results; 
  	}
-    
-       
-       
+
+
+	/**
+	 * Invert method
+	 *
+	 * @author Benoit Lombardot
+	 *
+	 * @param args
+	 * @return
+	 */
    @OpMethod(op = InvertCIP.class)
    public Object invert( final Object... args ) {
   		
@@ -439,7 +504,15 @@ public class CIP extends AbstractNamespace{
    /*********************************************************************************
   	* basic  mathematical morphology : erode, dilate, open, close, tophat			*
   	*********************************************************************************/
-   	
+
+	/**
+	 * Dilation method
+	 *
+	 * @author Benoit Lombardot
+	 *
+	 * @param args
+	 * @return
+	 */
     @OpMethod(op = DilationCIP.class)
    	public Object dilate( final Object... args ) {
    		
@@ -461,9 +534,16 @@ public class CIP extends AbstractNamespace{
   		}
   		return results; 
   	}
-     
- 
-    
+
+
+	/**
+	 * Erosion method
+	 *
+	 * @author Benoit Lombardot
+	 *
+	 * @param args
+	 * @return
+	 */
     @OpMethod(op = ErosionCIP.class)
    	public Object erode( final Object... args ) {
    		
@@ -485,8 +565,15 @@ public class CIP extends AbstractNamespace{
   		}
   		return results; 
   	}
- 
-       
+
+	/**
+	 * Opening method
+	 *
+	 * @author Benoit Lombardot
+	 *
+	 * @param args
+	 * @return
+	 */
     @OpMethod(op = OpeningCIP.class)
    	public Object opening( final Object... args ) {
    		
@@ -508,10 +595,17 @@ public class CIP extends AbstractNamespace{
   		}
   		return results; 
   	}
-       
-       
-      
-       
+
+
+
+	/**
+	 * Closing method
+	 *
+	 * @author Benoit Lombardot
+	 *
+	 * @param args
+	 * @return
+	 */
     @OpMethod(op = OpeningCIP.class)
    	public Object closing( final Object... args ) {
    		
@@ -533,9 +627,16 @@ public class CIP extends AbstractNamespace{
   		}
   		return results; 
   	}
-       
-       
-       
+
+
+	/**
+	 * Tophat method
+	 *
+	 * @author Benoit Lombardot
+	 *
+	 * @param args
+	 * @return
+	 */
     @OpMethod(op = TophatCIP.class)
    	public Object tophat( final Object... args ) {
    		
@@ -569,22 +670,53 @@ public class CIP extends AbstractNamespace{
 		String NAME = "math binary";
 		
 	}
-    
-    public Object add( final Object... args ) {
+
+	/**
+	 * Add
+	 *
+	 * @author Benoit Lombardot
+	 *
+	 * @param args
+	 * @return
+	 */    public Object add( final Object... args ) {
     	
     	return math2Operation("add", args );
     }
-    
+
+	/**
+	 * Sub method
+	 *
+	 * @author Benoit Lombardot
+	 *
+	 * @param args
+	 * @return
+	 */
     public Object sub( final Object... args ) {
     	
     	return math2Operation("subtract", args );
     }
 
+	/**
+	 * Multiply method
+	 *
+	 * @author Benoit Lombardot
+	 *
+	 * @param args
+	 * @return
+	 */
     public Object mul( final Object... args ) {
     	
     	return math2Operation("multiply", args );
     }
 
+	/**
+	 * Divide method
+	 *
+	 * @author Benoit Lombardot
+	 *
+	 * @param args
+	 * @return
+	 */
     public Object div( final Object... args ) {
     	
     	return math2Operation("divide", args );
@@ -648,17 +780,40 @@ public class CIP extends AbstractNamespace{
     
     
     //min and max op do not exist for images, so they are added in the math package here
-    
+	/**
+	 * Min method
+	 *
+	 * @author Benoit Lombardot
+	 *
+	 * @param args
+	 * @return
+	 */
     public Object min( final Object... args ) {
     	
     	return moreMath2Operation("min", args );
     }
 
+	/**
+	 * Max method
+	 *
+	 * @author Benoit Lombardot
+	 *
+	 * @param args
+	 * @return
+	 */
     public Object max( final Object... args ) {
     	
     	return moreMath2Operation("max", args );
     }
-    
+
+	/**
+	 * Pow method
+	 *
+	 * @author Benoit Lombardot
+	 *
+	 * @param args
+	 * @return
+	 */
     public Object pow( final Object... args ) {
     	
     	return moreMath2Operation("pow", args );
@@ -723,73 +878,184 @@ public class CIP extends AbstractNamespace{
 		String NAME = "math unary";
 		
 	}
-    
-    
+
+	/**
+	 * Cos method
+	 *
+	 * @author Benoit Lombardot
+	 *
+	 * @param args
+	 * @return
+	 */
     public Object cos( final Object... args ) {
     	
     	return math1Operation("cos", args );
     }
-    
+
+	/**
+	 * Sin method
+	 *
+	 * @author Benoit Lombardot
+	 *
+	 * @param args
+	 * @return
+	 */
     public Object sin( final Object... args ) {
     	
     	return math1Operation("sin", args );
     }
 
+	/**
+	 * Tan method
+	 *
+	 * @author Benoit Lombardot
+	 *
+	 * @param args
+	 * @return
+	 */
     public Object tan( final Object... args ) {
     	
     	return math1Operation("tan", args );
     }
 
+	/**
+	 * Acos method
+	 *
+	 * @author Benoit Lombardot
+	 *
+	 * @param args
+	 * @return
+	 */
     public Object acos( final Object... args ) {
     	
     	return math1Operation("acos", args );
     }
-    
+
+	/**
+	 * Asin method
+	 *
+	 * @author Benoit Lombardot
+	 *
+	 * @param args
+	 * @return
+	 */
     public Object asin( final Object... args ) {
     	
     	return math1Operation("asin", args );
     }
 
+	/**
+	 * Atan method
+	 *
+	 * @author Benoit Lombardot
+	 *
+	 * @param args
+	 * @return
+	 */
     public Object atan( final Object... args ) {
     	
     	return math1Operation("atan", args );
     }
 
+	/**
+	 * Log method
+	 *
+	 * @author Benoit Lombardot
+	 *
+	 * @param args
+	 * @return
+	 */
     public Object log( final Object... args ) {
     	
     	return math1Operation("log", args );
     }
-    
+
+	/**
+	 * Exp method
+	 *
+	 * @author Benoit Lombardot
+	 *
+	 * @param args
+	 * @return
+	 */
     public Object exp( final Object... args ) {
     	
     	return math1Operation("exp", args );
     }
 
+	/**
+	 * Sqrt method
+	 *
+	 * @author Benoit Lombardot
+	 *
+	 * @param args
+	 * @return
+	 */
     public Object sqrt( final Object... args ) {
     	
     	return math1Operation("sqrt", args );
     }
 
+	/**
+	 * Abs method
+	 *
+	 * @author Benoit Lombardot
+	 *
+	 * @param args
+	 * @return
+	 */
     public Object abs( final Object... args ) {
     	
     	return math1Operation("abs", args );
     }
 
+	/**
+	 * Round method
+	 *
+	 * @author Benoit Lombardot
+	 *
+	 * @param args
+	 * @return
+	 */
     public Object round( final Object... args ) {
     	
     	return math1Operation("round", args );
     }
 
+	/**
+	 * Floor method
+	 *
+	 * @author Benoit Lombardot
+	 *
+	 * @param args
+	 * @return
+	 */
     public Object floor( final Object... args ) {
     	
     	return math1Operation("floor", args );
     }
 
+	/**
+	 * Ceil method
+	 *
+	 * @author Benoit Lombardot
+	 *
+	 * @param args
+	 * @return
+	 */
     public Object ceil( final Object... args ) {
     	
     	return math1Operation("ceil", args );
     }
 
+	/**
+	 * Sign method
+	 *
+	 * @author Benoit Lombardot
+	 *
+	 * @param args
+	 * @return
+	 */
     public Object sign( final Object... args ) {
     	
     	return math1Operation("sign", args );
@@ -831,11 +1097,18 @@ public class CIP extends AbstractNamespace{
   		return ops().run( opName , parametersFinal ); 
   		
   	}
-    
-    
-    
-    
-    
+
+
+
+
+	/**
+	 * Create method
+	 *
+	 * @author Benoit Lombardot
+	 *
+	 * @param args
+	 * @return
+	 */
     @OpMethod(op = CreateCIP.class)
     public Object create( final Object... args ) {
    		
@@ -881,9 +1154,16 @@ public class CIP extends AbstractNamespace{
 
   		return results; 
   	}
-    
-    
-    
+
+
+	/**
+	 * Slice method
+	 *
+	 * @author Benoit Lombardot
+	 *
+	 * @param args
+	 * @return
+	 */
     @OpMethod(op = ProjectCIP.class)
     public Object slice( final Object... args ) {
    		
@@ -907,7 +1187,14 @@ public class CIP extends AbstractNamespace{
    		return results;
     }
 
-    
+	/**
+	 * Duplicate method
+	 *
+	 * @author Benoit Lombardot
+	 *
+	 * @param args
+	 * @return
+	 */
     @OpMethod(op = DuplicateCIP.class)
     public Object duplicate( final Object... args ) {
    		
@@ -930,10 +1217,17 @@ public class CIP extends AbstractNamespace{
    		
    		return results;
     }
-    
 
-    
-    
+
+
+	/**
+	 * Project method
+	 *
+	 * @author Benoit Lombardot
+	 *
+	 * @param args
+	 * @return
+	 */
     @OpMethod(op = Project2CIP.class)
     public Object project( final Object... args ) {
    		
@@ -972,14 +1266,15 @@ public class CIP extends AbstractNamespace{
    		return results;
     }
 
-    
-    
-    /**
-     * 
-     * @param args an image   
-     * @return an array containing the origin of the image
-     * 
-     */
+
+	/**
+	 * Origin method
+	 *
+	 * @author Benoit Lombardot
+	 *
+	 * @param args an image
+	 * @return an array containing the origin of the image
+	 */
     public Long[] origin( Object... args )
     {
     	FunctionParameters2 params = new FunctionParameters2("getOrigin");
@@ -998,7 +1293,14 @@ public class CIP extends AbstractNamespace{
     	return origin;
     }
 
-    
+	/**
+	 * Size method
+	 *
+	 * @author Benoit Lombardot
+	 *
+	 * @param args
+	 * @return
+	 */
     public Long[] size( Object... args )
     {
     	FunctionParameters2 params = new FunctionParameters2("getSize");
@@ -1028,6 +1330,14 @@ public class CIP extends AbstractNamespace{
     /////////////////////////////////////////////////////////
     
     // this way I only need to add list support in the input parsing
+	/**
+	 * list method
+	 *
+	 * @author Benoit Lombardot
+	 *
+	 * @param ds
+	 * @return
+	 */
     public static List<Double> list( double ... ds ) {
 		List<Double> list = new ArrayList<Double>();
 		for ( double value : ds ) {
@@ -1038,6 +1348,14 @@ public class CIP extends AbstractNamespace{
 	
     
     // would be awesome if all arrays and scalar would represented by RAIs (i.e. and not only images)
+	/**
+	 * asimg method
+	 *
+	 * @author Benoit Lombardot
+	 *
+	 * @param ds
+	 * @return
+	 */
 	public static Img<DoubleType> asimg( double ... ds )
 	{
 		Img<DoubleType> array = ArrayImgs.doubles(ds.length,1);
@@ -1049,9 +1367,14 @@ public class CIP extends AbstractNamespace{
 		}
 		return array;
 	}
-    
-	
-	
+
+	/**
+	 * Set the number of threads
+	 *
+	 * @author Benoit Lombardot
+	 *
+	 * @param nThread
+	 */
 	public void setNumberOfthread( int nThread)
 	{
 		nThread = Math.max(1 , nThread);
